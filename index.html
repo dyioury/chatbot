@@ -13,7 +13,6 @@
             color: #333;
         }
 
-        /* Header */
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -48,7 +47,6 @@
 
         .nav-links a:hover { opacity: 0.8; }
 
-        /* Hero */
         .hero {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -84,7 +82,6 @@
             transform: scale(1.05);
         }
 
-        /* Features */
         .features {
             padding: 80px 20px;
             max-width: 1200px;
@@ -124,7 +121,6 @@
             color: #666;
         }
 
-        /* Demo Section */
         .demo-section {
             background: #f8f9fa;
             padding: 80px 20px;
@@ -133,11 +129,17 @@
 
         .demo-section h2 {
             font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .demo-section > p {
+            color: #666;
             margin-bottom: 40px;
+            font-size: 18px;
         }
 
         .demo-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             background: white;
             border-radius: 20px;
@@ -157,7 +159,37 @@
             margin-bottom: 10px;
         }
 
-        /* Pricing */
+        .demo-iframe-wrapper {
+            width: 100%;
+            height: 500px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .demo-iframe-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .demo-fallback {
+            padding: 40px;
+            text-align: center;
+        }
+
+        .demo-fallback a {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
         .pricing {
             padding: 80px 20px;
             max-width: 1200px;
@@ -269,7 +301,6 @@
             background: #c0392b;
         }
 
-        /* Footer */
         .footer {
             background: #333;
             color: white;
@@ -282,6 +313,7 @@
             text-decoration: none;
         }
     </style>
+<base target="_blank">
 </head>
 <body>
     <!-- Header -->
@@ -344,16 +376,17 @@
     <!-- Demo -->
     <section class="demo-section" id="demo">
         <h2>See It In Action</h2>
+        <p>Try the live demo below! Click the red chat button and ask anything.</p>
         <div class="demo-container">
             <div class="demo-site-mockup">
                 <h3>👕 Plato's Closet</h3>
                 <p>"We buy and sell gently used clothes, shoes, and accessories."</p>
-                <p style="margin-top:15px; color:#888; font-size:14px;">
-                    Click the red chat button (bottom-right) to try the AI chatbot!
-                </p>
+            </div>
+            <div class="demo-iframe-wrapper">
+                <iframe src="demo.html" title="Chatbot Demo"></iframe>
             </div>
             <p style="color:#666; margin-top:20px;">
-                This is a live demo. Ask it anything: "How do I sell?", "What brands?", "Store hours?"
+                Try asking: "How do I sell?" | "What brands?" | "Store hours?" | "Pricing?"
             </p>
         </div>
     </section>
@@ -412,158 +445,5 @@
             <a href="#">Terms of Service</a>
         </p>
     </footer>
-
-    <!-- Chatbot Widget -->
-    <div class="chat-widget" id="chatWidget" style="position:fixed;bottom:20px;right:20px;z-index:9999;">
-        <button id="chatButton" style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#e74c3c,#c0392b);border:none;cursor:pointer;box-shadow:0 4px 15px rgba(231,76,60,0.4);display:flex;align-items:center;justify-content:center;transition:transform 0.3s;position:relative;z-index:10000;outline:none;" type="button" aria-label="Open chat">
-            <svg style="width:28px;height:28px;fill:white;pointer-events:none;display:block;" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
-        </button>
-        <div id="chatWindow" style="position:absolute;bottom:75px;right:0;width:380px;height:520px;background:white;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,0.2);display:none;flex-direction:column;overflow:hidden;opacity:0;transform:translateY(20px) scale(0.95);transition:opacity 0.3s ease,transform 0.3s ease;pointer-events:none;">
-            <div style="background:linear-gradient(135deg,#e74c3c,#c0392b);padding:20px;color:white;display:flex;align-items:center;gap:12px;flex-shrink:0;">
-                <div style="width:45px;height:45px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">&#128085;</div>
-                <div>
-                    <h3 style="font-size:16px;margin-bottom:2px;">Plato's Closet AI</h3>
-                    <span style="font-size:12px;opacity:0.9;">Online - Replies instantly</span>
-                </div>
-                <button id="closeBtn" style="margin-left:auto;background:none;border:none;color:white;font-size:28px;cursor:pointer;opacity:0.8;padding:0 5px;line-height:1;outline:none;" type="button">&#10005;</button>
-            </div>
-            <div id="chatMessages" style="flex:1;padding:20px;overflow-y:auto;background:#f8f9fa;min-height:0;">
-                <div class="message" style="margin-bottom:15px;max-width:80%;margin-right:auto;">
-                    <div style="padding:12px 16px;border-radius:18px;font-size:14px;line-height:1.5;background:white;color:#333;border-bottom-left-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-                        <div style="background:linear-gradient(135deg,#9b59b6,#8e44ad);color:white;padding:6px 12px;border-radius:15px;font-size:11px;font-weight:600;display:inline-block;margin-bottom:8px;">AI-Powered</div><br>
-                        Hey there! I'm Plato's AI assistant! Whether you wanna sell your clothes for cash or score some amazing deals on gently used styles, I'm here to help! What brings you in today?
-                    </div>
-                    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
-                        <button class="quick-reply" type="button" data-value="I want to sell my clothes" style="background:white;border:1px solid #e74c3c;color:#e74c3c;padding:8px 14px;border-radius:20px;font-size:12px;cursor:pointer;font-family:inherit;outline:none;">I want to sell</button>
-                        <button class="quick-reply" type="button" data-value="I'm looking for a store near me" style="background:white;border:1px solid #e74c3c;color:#e74c3c;padding:8px 14px;border-radius:20px;font-size:12px;cursor:pointer;font-family:inherit;outline:none;">Find a store</button>
-                        <button class="quick-reply" type="button" data-value="What brands do you buy?" style="background:white;border:1px solid #e74c3c;color:#e74c3c;padding:8px 14px;border-radius:20px;font-size:12px;cursor:pointer;font-family:inherit;outline:none;">What brands?</button>
-                        <button class="quick-reply" type="button" data-value="How does the rewards program work?" style="background:white;border:1px solid #e74c3c;color:#e74c3c;padding:8px 14px;border-radius:20px;font-size:12px;cursor:pointer;font-family:inherit;outline:none;">Rewards program</button>
-                        <button class="quick-reply" type="button" data-value="Tell me about your sustainability" style="background:white;border:1px solid #e74c3c;color:#e74c3c;padding:8px 14px;border-radius:20px;font-size:12px;cursor:pointer;font-family:inherit;outline:none;">Sustainability</button>
-                        <button class="quick-reply" type="button" data-value="How much do you pay for clothes?" style="background:white;border:1px solid #e74c3c;color:#e74c3c;padding:8px 14px;border-radius:20px;font-size:12px;cursor:pointer;font-family:inherit;outline:none;">Pricing</button>
-                    </div>
-                </div>
-            </div>
-            <div id="typingIndicator" style="display:none;padding:12px 16px;background:white;border-radius:18px;border-bottom-left-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.08);width:fit-content;margin-bottom:15px;">
-                <span style="width:8px;height:8px;background:#e74c3c;border-radius:50%;display:inline-block;margin-right:4px;animation:typing 1.4s infinite;"></span>
-                <span style="width:8px;height:8px;background:#e74c3c;border-radius:50%;display:inline-block;margin-right:4px;animation:typing 1.4s infinite 0.2s;"></span>
-                <span style="width:8px;height:8px;background:#e74c3c;border-radius:50%;display:inline-block;animation:typing 1.4s infinite 0.4s;"></span>
-            </div>
-            <div style="padding:15px 20px;background:white;border-top:1px solid #eee;display:flex;gap:10px;align-items:center;flex-shrink:0;">
-                <input type="text" id="chatInput" placeholder="Ask me anything..." autocomplete="off" style="flex:1;border:1px solid #ddd;border-radius:25px;padding:12px 18px;font-size:14px;outline:none;font-family:inherit;">
-                <button id="sendBtn" type="button" style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#e74c3c,#c0392b);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;outline:none;">
-                    <svg style="width:20px;height:20px;fill:white;pointer-events:none;display:block;" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <style>
-        @keyframes typing {
-            0%, 60%, 100% { transform: translateY(0); }
-            30% { transform: translateY(-10px); }
-        }
-        .chat-window-active {
-            display: flex !important;
-            opacity: 1 !important;
-            transform: translateY(0) scale(1) !important;
-            pointer-events: all !important;
-        }
-    </style>
-
-    <script>
-        (function() {
-            'use strict';
-            var chatButton = document.getElementById('chatButton');
-            var chatWindow = document.getElementById('chatWindow');
-            var closeBtn = document.getElementById('closeBtn');
-            var chatMessages = document.getElementById('chatMessages');
-            var chatInput = document.getElementById('chatInput');
-            var sendBtn = document.getElementById('sendBtn');
-            var typingIndicator = document.getElementById('typingIndicator');
-            var chatWidget = document.getElementById('chatWidget');
-            var isOpen = false;
-
-            function toggleChat() {
-                isOpen = !isOpen;
-                if (isOpen) {
-                    chatWindow.style.display = 'flex';
-                    void chatWindow.offsetHeight;
-                    requestAnimationFrame(function() {
-                        chatWindow.classList.add('chat-window-active');
-                    });
-                    setTimeout(function() { chatInput.focus(); }, 350);
-                } else {
-                    chatWindow.classList.remove('chat-window-active');
-                    setTimeout(function() {
-                        if (!isOpen) chatWindow.style.display = 'none';
-                    }, 300);
-                }
-            }
-
-            chatButton.addEventListener('click', function(e) {
-                e.preventDefault(); e.stopPropagation(); toggleChat(); return false;
-            });
-            closeBtn.addEventListener('click', function(e) {
-                e.preventDefault(); e.stopPropagation(); toggleChat(); return false;
-            });
-            sendBtn.addEventListener('click', function(e) {
-                e.preventDefault(); e.stopPropagation();
-                var text = chatInput.value.trim();
-                if (!text) return;
-                var msgDiv = document.createElement('div');
-                msgDiv.className = 'message';
-                msgDiv.style.cssText = 'margin-bottom:15px;max-width:80%;margin-left:auto;';
-                msgDiv.innerHTML = '<div style="padding:12px 16px;border-radius:18px;font-size:14px;line-height:1.5;background:linear-gradient(135deg,#e74c3c,#c0392b);color:white;border-bottom-right-radius:4px;">' + text.replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</div>';
-                chatMessages.appendChild(msgDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-                chatInput.value = '';
-                typingIndicator.style.display = 'flex';
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-                setTimeout(function() {
-                    typingIndicator.style.display = 'none';
-                    var botDiv = document.createElement('div');
-                    botDiv.className = 'message';
-                    botDiv.style.cssText = 'margin-bottom:15px;max-width:80%;margin-right:auto;animation:fadeIn 0.3s ease;';
-                    botDiv.innerHTML = '<div style="padding:12px 16px;border-radius:18px;font-size:14px;line-height:1.5;background:white;color:#333;border-bottom-left-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">Thanks for your interest! This is a demo. To get your own AI chatbot, <a href="signup.html" style="color:#e74c3c;font-weight:bold;">sign up here</a> and we'll customize it for your store.</div>';
-                    chatMessages.appendChild(botDiv);
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
-                }, 1500);
-            });
-            chatInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') { e.preventDefault(); sendBtn.click(); }
-            });
-            chatMessages.addEventListener('click', function(e) {
-                var target = e.target;
-                while (target && target !== chatMessages) {
-                    if (target.getAttribute && target.getAttribute('data-value')) {
-                        e.preventDefault(); e.stopPropagation();
-                        var value = target.getAttribute('data-value');
-                        var msgDiv = document.createElement('div');
-                        msgDiv.className = 'message';
-                        msgDiv.style.cssText = 'margin-bottom:15px;max-width:80%;margin-left:auto;';
-                        msgDiv.innerHTML = '<div style="padding:12px 16px;border-radius:18px;font-size:14px;line-height:1.5;background:linear-gradient(135deg,#e74c3c,#c0392b);color:white;border-bottom-right-radius:4px;">' + value.replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</div>';
-                        chatMessages.appendChild(msgDiv);
-                        chatMessages.scrollTop = chatMessages.scrollHeight;
-                        typingIndicator.style.display = 'flex';
-                        chatMessages.scrollTop = chatMessages.scrollHeight;
-                        setTimeout(function() {
-                            typingIndicator.style.display = 'none';
-                            var botDiv = document.createElement('div');
-                            botDiv.className = 'message';
-                            botDiv.style.cssText = 'margin-bottom:15px;max-width:80%;margin-right:auto;animation:fadeIn 0.3s ease;';
-                            botDiv.innerHTML = '<div style="padding:12px 16px;border-radius:18px;font-size:14px;line-height:1.5;background:white;color:#333;border-bottom-left-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">Great question! This is a demo. To get your own AI chatbot with full responses, <a href="signup.html" style="color:#e74c3c;font-weight:bold;">sign up here</a> and we'll customize it for your store.</div>';
-                            chatMessages.appendChild(botDiv);
-                            chatMessages.scrollTop = chatMessages.scrollHeight;
-                        }, 1500);
-                        return false;
-                    }
-                    target = target.parentNode;
-                }
-            });
-            document.addEventListener('click', function(e) {
-                if (isOpen && !chatWidget.contains(e.target)) toggleChat();
-            });
-        })();
-    </script>
 </body>
 </html>
