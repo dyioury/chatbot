@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatBot Pro - AI Chatbots for Retail Stores</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover { opacity: 0.8; }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 150px 20px 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Features */
+        .features {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #666;
+        }
+
+        /* Demo Section */
+        .demo-section {
+            background: #f8f9fa;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .demo-section h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+
+        .demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .demo-site-mockup {
+            background: #f0f0f0;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .demo-site-mockup h3 {
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+        }
+
+        .pricing-card.featured {
+            border-color: #e74c3c;
+            position: relative;
+        }
+
+        .pricing-card.featured::before {
+            content: "MOST POPULAR";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #e74c3c;
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .pricing-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 48px;
+            font-weight: bold;
+            color: #667eea;
+            margin: 20px 0;
+        }
+
+        .price span {
+            font-size: 16px;
+            color: #666;
+            font-weight: normal;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            text-align: left;
+            margin: 30px 0;
+        }
+
+        .pricing-card ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .pricing-card ul li::before {
+            content: "✓ ";
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .pricing-cta {
+            display: block;
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .pricing-cta:hover {
+            background: #5a6fd6;
+        }
+
+        .pricing-card.featured .pricing-cta {
+            background: #e74c3c;
+        }
+
+        .pricing-card.featured .pricing-cta:hover {
+            background: #c0392b;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">🤖 ChatBot Pro</div>
+            <nav class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#demo">Demo</a>
+                <a href="#pricing">Pricing</a>
+                <a href="signup.html">Get Started</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>AI Chatbots That Sell While You Sleep</h1>
+        <p>Stop losing customers to unanswered questions. Our AI chatbot handles FAQs 24/7, captures leads, and turns browsers into buyers.</p>
+        <a href="signup.html" class="cta-button">Start Free Trial →</a>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <h2>Why Store Owners Love Us</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Instant Answers</h3>
+                <p>Your customers get answers in seconds, not hours. No more waiting for email replies or phone callbacks.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Lead Capture</h3>
+                <p>Collect customer emails and phone numbers automatically. Follow up with hot leads who are ready to buy.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Works Everywhere</h3>
+                <p>One line of code. Works on WordPress, Shopify, Wix, Squarespace, or any custom website.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Your Brand</h3>
+                <p>Customize colors, logo, and tone to match your store. It looks like you built it.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Analytics</h3>
+                <p>See what customers ask most, peak hours, and conversion rates. Make data-driven decisions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔧</div>
+                <h3>Zero Maintenance</h3>
+                <p>We handle updates, bug fixes, and new features. You focus on running your store.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo -->
+    <section class="demo-section" id="demo">
+        <h2>See It In Action</h2>
+        <div class="demo-container">
+            <div class="demo-site-mockup">
+                <h3>👕 Plato's Closet</h3>
+                <p>"We buy and sell gently used clothes, shoes, and accessories."</p>
+                <p style="margin-top:15px; color:#888; font-size:14px;">
+                    Click the red chat button (bottom-right) to try the AI chatbot!
+                </p>
+            </div>
+            <p style="color:#666; margin-top:20px;">
+                This is a live demo. Ask it anything: "How do I sell?", "What brands?", "Store hours?"
+            </p>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <h2>Simple Pricing</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Starter</h3>
+                <div class="price">$49<span>/month</span></div>
+                <ul>
+                    <li>AI Chatbot with standard FAQs</li>
+                    <li>Up to 500 conversations/month</li>
+                    <li>Basic customization</li>
+                    <li>Email support</li>
+                    <li>Monthly analytics report</li>
+                </ul>
+                <a href="signup.html?plan=starter" class="pricing-cta">Get Started</a>
+            </div>
+            <div class="pricing-card featured">
+                <h3>Professional</h3>
+                <div class="price">$99<span>/month</span></div>
+                <ul>
+                    <li>Everything in Starter</li>
+                    <li>Unlimited conversations</li>
+                    <li>Full brand customization</li>
+                    <li>Lead capture & export</li>
+                    <li>Priority support</li>
+                    <li>Weekly analytics reports</li>
+                </ul>
+                <a href="signup.html?plan=pro" class="pricing-cta">Get Started</a>
+            </div>
+            <div class="pricing-card">
+                <h3>Enterprise</h3>
+                <div class="price">$199<span>/month</span></div>
+                <ul>
+                    <li>Everything in Professional</li>
+                    <li>Multiple store locations</li>
+                    <li>Custom AI training</li>
+                    <li>API access</li>
+                    <li>Dedicated account manager</li>
+                    <li>White-label option</li>
+                </ul>
+                <a href="signup.html?plan=enterprise" class="pricing-cta">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>ChatBot Pro - AI Chatbots for Retail</p>
+        <p style="margin-top:10px; opacity:0.7;">
+            <a href="mailto:youremail@example.com">Contact Support</a> | 
+            <a href="#">Privacy Policy</a> | 
+            <a href="#">Terms of Service</a>
+        </p>
+    </footer>
+
+    <!-- Chatbot Widget -->
+    <div class="chat-widget" id="chatWidget" style="position:fixed;bottom:20px;right:20px;z-index:9999;">
+        <button id="chatButton" style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#e74c3c,#c0392b);border:none;cursor:pointer;box-shadow:0 4px 15px rgba(231,76,60,0.4);display:flex;align-items:center;justify-content:center;transition:transform 0.3s;position:relative;z-index:10000;outline:none;" type="button" aria-label="Open chat">
+            <svg style="width:28px;height:28px;fill:white;pointer-events:none;display:block;" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+        </button>
+        <div id="chatWindow" style="position:absolute;bottom:75px;right:0;width:380px;height:520px;background:white;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,0.2);display:none;flex-direction:column;overflow:hidden;opacity:0;transform:translateY(20px) scale(0.95);transition:opacity 0.3s ease,transform 0.3s ease;pointer-events:none;">
+            <div style="background:linear-gradient(135deg,#e74c3c,#c0392b);padding:20px;color:white;display:flex;align-items:center;gap:12px;flex-shrink:0;">
+                <div style="width:45px;height:45px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">&#128085;</div>
+                <div>
+                    <h3 style="font-size:16px;margin-bottom:2px;">Plato's Closet AI</h3>
+                    <span style="font-size:12px;opacity:0.9;">Online - Replies instantly</span>
+                </div>
+                <button id="closeBtn" style="margin-left:auto;background:none;border:none;color:white;font-size:28px;cursor:pointer;opacity:0.8;padding:0 5px;line-height:1;outline:none;" type="button">&#10005;</button>
+            </div>
+            <div id="chatMessages" style="flex:1;padding:20px;overflow-y:auto;background:#f8f9fa;min-height:0;">
+                <div class="message" style="margin-bottom:15px;max-width:80%;margin-right:auto;">
+                    <div style="padding:12px 16px;border-radius:18px;font-size:14px;line-height:1.5;background:white;color:#333;border-bottom-left-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+                        <div style="background:linear-gradient(135deg,#9b59b6,#8e44ad);color:white;padding:6px 12px;border-radius:15px;font-size:11px;font-weight:600;display:inline-block;margin-bottom:8px;">AI-Powered</div><br>
+                        Hey there! I'm Plato's AI assistant! Whether you wanna sell your clothes for cash or score some amazing deals on gently used styles, I'm here to help! What brings you in today?
+                    </div>
+                    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+                        <button class="quick-reply" type="button" data-value="I want to sell my clothes" style="background:white;border:1px solid #e74c3c;color:#e74c3c;padding:8px 14px;border-radius:20px;font-size:12px;cursor:pointer;font-family:inherit;outline:none;">I want to sell</button>
+                        <button class="quick-reply" type="button" data-value="I'm looking for a store near me" style="background:white;border:1px solid #e74c3c;color:#e74c3c;padding:8px 14px;border-radius:20px;font-size:12px;cursor:pointer;font-family:inherit;outline:none;">Find a store</button>
+                        <button class="quick-reply" type="button" data-value="What brands do you buy?" style="background:white;border:1px solid #e74c3c;color:#e74c3c;padding:8px 14px;border-radius:20px;font-size:12px;cursor:pointer;font-family:inherit;outline:none;">What brands?</button>
+                        <button class="quick-reply" type="button" data-value="How does the rewards program work?" style="background:white;border:1px solid #e74c3c;color:#e74c3c;padding:8px 14px;border-radius:20px;font-size:12px;cursor:pointer;font-family:inherit;outline:none;">Rewards program</button>
+                        <button class="quick-reply" type="button" data-value="Tell me about your sustainability" style="background:white;border:1px solid #e74c3c;color:#e74c3c;padding:8px 14px;border-radius:20px;font-size:12px;cursor:pointer;font-family:inherit;outline:none;">Sustainability</button>
+                        <button class="quick-reply" type="button" data-value="How much do you pay for clothes?" style="background:white;border:1px solid #e74c3c;color:#e74c3c;padding:8px 14px;border-radius:20px;font-size:12px;cursor:pointer;font-family:inherit;outline:none;">Pricing</button>
+                    </div>
+                </div>
+            </div>
+            <div id="typingIndicator" style="display:none;padding:12px 16px;background:white;border-radius:18px;border-bottom-left-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.08);width:fit-content;margin-bottom:15px;">
+                <span style="width:8px;height:8px;background:#e74c3c;border-radius:50%;display:inline-block;margin-right:4px;animation:typing 1.4s infinite;"></span>
+                <span style="width:8px;height:8px;background:#e74c3c;border-radius:50%;display:inline-block;margin-right:4px;animation:typing 1.4s infinite 0.2s;"></span>
+                <span style="width:8px;height:8px;background:#e74c3c;border-radius:50%;display:inline-block;animation:typing 1.4s infinite 0.4s;"></span>
+            </div>
+            <div style="padding:15px 20px;background:white;border-top:1px solid #eee;display:flex;gap:10px;align-items:center;flex-shrink:0;">
+                <input type="text" id="chatInput" placeholder="Ask me anything..." autocomplete="off" style="flex:1;border:1px solid #ddd;border-radius:25px;padding:12px 18px;font-size:14px;outline:none;font-family:inherit;">
+                <button id="sendBtn" type="button" style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#e74c3c,#c0392b);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;outline:none;">
+                    <svg style="width:20px;height:20px;fill:white;pointer-events:none;display:block;" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+        .chat-window-active {
+            display: flex !important;
+            opacity: 1 !important;
+            transform: translateY(0) scale(1) !important;
+            pointer-events: all !important;
+        }
+    </style>
+
+    <script>
+        (function() {
+            'use strict';
+            var chatButton = document.getElementById('chatButton');
+            var chatWindow = document.getElementById('chatWindow');
+            var closeBtn = document.getElementById('closeBtn');
+            var chatMessages = document.getElementById('chatMessages');
+            var chatInput = document.getElementById('chatInput');
+            var sendBtn = document.getElementById('sendBtn');
+            var typingIndicator = document.getElementById('typingIndicator');
+            var chatWidget = document.getElementById('chatWidget');
+            var isOpen = false;
+
+            function toggleChat() {
+                isOpen = !isOpen;
+                if (isOpen) {
+                    chatWindow.style.display = 'flex';
+                    void chatWindow.offsetHeight;
+                    requestAnimationFrame(function() {
+                        chatWindow.classList.add('chat-window-active');
+                    });
+                    setTimeout(function() { chatInput.focus(); }, 350);
+                } else {
+                    chatWindow.classList.remove('chat-window-active');
+                    setTimeout(function() {
+                        if (!isOpen) chatWindow.style.display = 'none';
+                    }, 300);
+                }
+            }
+
+            chatButton.addEventListener('click', function(e) {
+                e.preventDefault(); e.stopPropagation(); toggleChat(); return false;
+            });
+            closeBtn.addEventListener('click', function(e) {
+                e.preventDefault(); e.stopPropagation(); toggleChat(); return false;
+            });
+            sendBtn.addEventListener('click', function(e) {
+                e.preventDefault(); e.stopPropagation();
+                var text = chatInput.value.trim();
+                if (!text) return;
+                var msgDiv = document.createElement('div');
+                msgDiv.className = 'message';
+                msgDiv.style.cssText = 'margin-bottom:15px;max-width:80%;margin-left:auto;';
+                msgDiv.innerHTML = '<div style="padding:12px 16px;border-radius:18px;font-size:14px;line-height:1.5;background:linear-gradient(135deg,#e74c3c,#c0392b);color:white;border-bottom-right-radius:4px;">' + text.replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</div>';
+                chatMessages.appendChild(msgDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                chatInput.value = '';
+                typingIndicator.style.display = 'flex';
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                setTimeout(function() {
+                    typingIndicator.style.display = 'none';
+                    var botDiv = document.createElement('div');
+                    botDiv.className = 'message';
+                    botDiv.style.cssText = 'margin-bottom:15px;max-width:80%;margin-right:auto;animation:fadeIn 0.3s ease;';
+                    botDiv.innerHTML = '<div style="padding:12px 16px;border-radius:18px;font-size:14px;line-height:1.5;background:white;color:#333;border-bottom-left-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">Thanks for your interest! This is a demo. To get your own AI chatbot, <a href="signup.html" style="color:#e74c3c;font-weight:bold;">sign up here</a> and we'll customize it for your store.</div>';
+                    chatMessages.appendChild(botDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 1500);
+            });
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') { e.preventDefault(); sendBtn.click(); }
+            });
+            chatMessages.addEventListener('click', function(e) {
+                var target = e.target;
+                while (target && target !== chatMessages) {
+                    if (target.getAttribute && target.getAttribute('data-value')) {
+                        e.preventDefault(); e.stopPropagation();
+                        var value = target.getAttribute('data-value');
+                        var msgDiv = document.createElement('div');
+                        msgDiv.className = 'message';
+                        msgDiv.style.cssText = 'margin-bottom:15px;max-width:80%;margin-left:auto;';
+                        msgDiv.innerHTML = '<div style="padding:12px 16px;border-radius:18px;font-size:14px;line-height:1.5;background:linear-gradient(135deg,#e74c3c,#c0392b);color:white;border-bottom-right-radius:4px;">' + value.replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</div>';
+                        chatMessages.appendChild(msgDiv);
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                        typingIndicator.style.display = 'flex';
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                        setTimeout(function() {
+                            typingIndicator.style.display = 'none';
+                            var botDiv = document.createElement('div');
+                            botDiv.className = 'message';
+                            botDiv.style.cssText = 'margin-bottom:15px;max-width:80%;margin-right:auto;animation:fadeIn 0.3s ease;';
+                            botDiv.innerHTML = '<div style="padding:12px 16px;border-radius:18px;font-size:14px;line-height:1.5;background:white;color:#333;border-bottom-left-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">Great question! This is a demo. To get your own AI chatbot with full responses, <a href="signup.html" style="color:#e74c3c;font-weight:bold;">sign up here</a> and we'll customize it for your store.</div>';
+                            chatMessages.appendChild(botDiv);
+                            chatMessages.scrollTop = chatMessages.scrollHeight;
+                        }, 1500);
+                        return false;
+                    }
+                    target = target.parentNode;
+                }
+            });
+            document.addEventListener('click', function(e) {
+                if (isOpen && !chatWidget.contains(e.target)) toggleChat();
+            });
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - ChatBot Pro</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .payment-container {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .order-summary {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .order-summary h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .order-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .order-row.total {
+            border-bottom: none;
+            font-weight: bold;
+            font-size: 18px;
+            color: #e74c3c;
+        }
+
+        .stripe-placeholder {
+            background: #f0f0f0;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .stripe-placeholder p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .pay-btn {
+            width: 100%;
+            padding: 15px;
+            background: #6772e5;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .pay-btn:hover {
+            background: #5469d4;
+        }
+
+        .secure-note {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <div class="logo">🤖 ChatBot Pro</div>
+        <p class="subtitle">Complete your subscription</p>
+
+        <div class="order-summary">
+            <h3>Order Summary</h3>
+            <div class="order-row">
+                <span>Plan</span>
+                <span id="planName">Professional</span>
+            </div>
+            <div class="order-row">
+                <span>Billing</span>
+                <span>Monthly</span>
+            </div>
+            <div class="order-row total">
+                <span>Total</span>
+                <span id="planPrice">$99/month</span>
+            </div>
+        </div>
+
+        <div class="stripe-placeholder">
+            <p>🔒 Stripe Payment Form</p>
+            <p style="font-size:14px;">In production, this integrates with Stripe Elements for secure card processing.</p>
+            <p style="font-size:12px;color:#999;">Card number, expiry, CVC fields appear here</p>
+        </div>
+
+        <button class="pay-btn" id="payButton">Pay & Start Subscription</button>
+
+        <p class="secure-note">🔒 Secured by Stripe. Cancel anytime.</p>
+
+        <div class="back-link">
+            <a href="signup.html">← Back to signup</a>
+        </div>
+    </div>
+
+    <script>
+        // Get plan from URL
+        var urlParams = new URLSearchParams(window.location.search);
+        var plan = urlParams.get('plan') || 'pro';
+        var price = urlParams.get('price') || '99';
+
+        var planNames = {
+            starter: 'Starter',
+            pro: 'Professional',
+            enterprise: 'Enterprise'
+        };
+
+        document.getElementById('planName').textContent = planNames[plan] || 'Professional';
+        document.getElementById('planPrice').textContent = '$' + price + '/month';
+
+        // Payment button
+        document.getElementById('payButton').addEventListener('click', function() {
+            // In real app, this would process Stripe payment
+            // For demo, simulate success
+            alert('In production, this processes payment via Stripe.\n\nFor demo: Payment successful! Redirecting to dashboard...');
+            window.location.href = 'dashboard.html';
+        });
+    </script>
+</body>
+</html>

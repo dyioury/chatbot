@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Started - ChatBot Pro</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .signup-container {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .plan-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .plan-option {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .plan-option:hover {
+            border-color: #667eea;
+        }
+
+        .plan-option.selected {
+            border-color: #e74c3c;
+            background: #fff5f5;
+        }
+
+        .plan-option h4 {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .plan-option .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.02);
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .payment-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .payment-info strong {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <div class="logo">🤖 ChatBot Pro</div>
+        <p class="subtitle">Get your AI chatbot in 48 hours</p>
+
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="storeName">Store Name</label>
+                <input type="text" id="storeName" name="storeName" placeholder="e.g., Plato's Closet Austin" required>
+            </div>
+
+            <div class="form-group">
+                <label for="ownerName">Your Name</label>
+                <input type="text" id="ownerName" name="ownerName" placeholder="John Smith" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="you@store.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required>
+            </div>
+
+            <div class="form-group">
+                <label for="website">Website URL</label>
+                <input type="url" id="website" name="website" placeholder="https://yourstore.com" required>
+            </div>
+
+            <div class="form-group">
+                <label>Choose Your Plan</label>
+                <div class="plan-selector">
+                    <div class="plan-option" data-plan="starter" data-price="49">
+                        <h4>Starter</h4>
+                        <div class="price">$49/mo</div>
+                    </div>
+                    <div class="plan-option selected" data-plan="pro" data-price="99">
+                        <h4>Pro</h4>
+                        <div class="price">$99/mo</div>
+                    </div>
+                    <div class="plan-option" data-plan="enterprise" data-price="199">
+                        <h4>Enterprise</h4>
+                        <div class="price">$199/mo</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="platform">Website Platform</label>
+                <select id="platform" name="platform" required>
+                    <option value="">Select your platform</option>
+                    <option value="wordpress">WordPress</option>
+                    <option value="shopify">Shopify</option>
+                    <option value="wix">Wix</option>
+                    <option value="squarespace">Squarespace</option>
+                    <option value="custom">Custom/HTML</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">Continue to Payment →</button>
+        </form>
+
+        <div class="payment-info">
+            <strong>What happens next:</strong><br>
+            1. You complete payment via Stripe<br>
+            2. We customize your chatbot (24-48 hours)<br>
+            3. You receive installation instructions<br>
+            4. Chatbot goes live on your site!
+        </div>
+
+        <div class="back-link">
+            <a href="index.html">← Back to home</a>
+        </div>
+    </div>
+
+    <script>
+        // Plan selection
+        document.querySelectorAll('.plan-option').forEach(function(option) {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.plan-option').forEach(function(o) {
+                    o.classList.remove('selected');
+                });
+                this.classList.add('selected');
+            });
+        });
+
+        // Form submission
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var selectedPlan = document.querySelector('.plan-option.selected');
+            var plan = selectedPlan.getAttribute('data-plan');
+            var price = selectedPlan.getAttribute('data-price');
+
+            var formData = {
+                storeName: document.getElementById('storeName').value,
+                ownerName: document.getElementById('ownerName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                website: document.getElementById('website').value,
+                platform: document.getElementById('platform').value,
+                plan: plan,
+                price: price
+            };
+
+            // Store in localStorage for demo purposes
+            localStorage.setItem('chatbotSignup', JSON.stringify(formData));
+
+            // Redirect to payment page (in real app, this would go to Stripe)
+            window.location.href = 'payment.html?plan=' + plan + '&price=' + price;
+        });
+    </script>
+</body>
+</html>
